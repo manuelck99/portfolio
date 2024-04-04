@@ -1,0 +1,7 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "defaultSeverity": "warning",
+  "rules": {
+    "no-empty-source": null
+  }
+}
