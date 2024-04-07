@@ -1,0 +1,146 @@
+@use "sass:math";
+
+// Converts points to rems assuming the browser's default font size is 16px.
+@function pt-to-rem($pt) {
+  @return math.div($pt, 6) * 0.5rem;
+}
+
+@mixin base-typography() {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+}
+
+.display-large {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(57);
+  letter-spacing: pt-to-rem(-0.25);
+  line-height: pt-to-rem(64);
+}
+
+.display-medium {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(45);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(52);
+}
+
+.display-small {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(36);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(44);
+}
+
+.headline-large {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(32);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(40);
+}
+
+.headline-medium {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(28);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(36);
+}
+
+.headline-small {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(24);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(32);
+}
+
+.title-large {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(22);
+  letter-spacing: pt-to-rem(0);
+  line-height: pt-to-rem(28);
+}
+
+.title-medium {
+  @include base-typography;
+
+  font-weight: 500;
+  font-size: pt-to-rem(16);
+  letter-spacing: pt-to-rem(0.15);
+  line-height: pt-to-rem(24);
+}
+
+.title-small {
+  @include base-typography;
+
+  font-weight: 500;
+  font-size: pt-to-rem(14);
+  letter-spacing: pt-to-rem(0.1);
+  line-height: pt-to-rem(20);
+}
+
+.body-large {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(16);
+  letter-spacing: pt-to-rem(0.5);
+  line-height: pt-to-rem(24);
+}
+
+.body-medium {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(14);
+  letter-spacing: pt-to-rem(0.25);
+  line-height: pt-to-rem(20);
+}
+
+.body-small {
+  @include base-typography;
+
+  font-weight: 400;
+  font-size: pt-to-rem(12);
+  letter-spacing: pt-to-rem(0.4);
+  line-height: pt-to-rem(16);
+}
+
+.label-large {
+  @include base-typography;
+
+  font-weight: 500;
+  font-size: pt-to-rem(14);
+  letter-spacing: pt-to-rem(0.1);
+  line-height: pt-to-rem(20);
+}
+
+.label-medium {
+  @include base-typography;
+
+  font-weight: 500;
+  font-size: pt-to-rem(12);
+  letter-spacing: pt-to-rem(0.5);
+  line-height: pt-to-rem(16);
+}
+
+.label-small {
+  @include base-typography;
+
+  font-weight: 500;
+  font-size: pt-to-rem(11);
+  letter-spacing: pt-to-rem(0.5);
+  line-height: pt-to-rem(16);
+}

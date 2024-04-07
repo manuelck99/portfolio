@@ -1,7 +1,7 @@
-@use "assets/colors";
-@use "assets/typography";
+@use "colors";
+@use "typography";
 
-html {
+:root {
   box-sizing: border-box;
 }
 
