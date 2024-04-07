@@ -17,7 +17,7 @@ describe("ProjectPageComponent", () => {
     fixture.detectChanges();
   });
   it("should exist", () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 });
 
@@ -46,7 +46,7 @@ describe("ProjectPageComponent with routing", () => {
   it("should be activated", () => {
     expect(activatedComponent).toBeInstanceOf(ProjectPageComponent);
   });
-  it("should have projectId 'test'", () => {
+  it("should have 'projectId' set to 'test'", () => {
     expect(activatedComponent.projectId()).toStrictEqual("test");
   });
 });

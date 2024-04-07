@@ -15,6 +15,6 @@ describe("HomePageComponent", () => {
     fixture.detectChanges();
   });
   it("should exist", () => {
-    expect(component).toBeDefined();
+    expect(component).toBeTruthy();
   });
 });
