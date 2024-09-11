@@ -1,0 +1,7 @@
+# Add files here to ignore them from prettier formatting
+.idea
+.nx
+node_modules
+dist
+coverage
+package-lock.json
