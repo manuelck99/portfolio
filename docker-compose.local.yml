@@ -1,0 +1,11 @@
+services:
+  postgres-local:
+    container_name: postgres-local
+    image: postgres:16.3-alpine3.20
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB=postgres"

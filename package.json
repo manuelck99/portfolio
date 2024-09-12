@@ -21,6 +21,10 @@
     "test:api": "nx run api:test",
     "test:ui-e2e": "nx run ui-e2e:e2e",
     "test:all": "nx run-many -t test --all",
+    "db:up": "docker compose -f docker-compose.local.yml up -d",
+    "db:down": "docker compose -f docker-compose.local.yml down -v",
+    "db:codegen": "kysely-codegen --dialect postgres --url postgres://postgres:postgres@localhost:5432/postgres && cp node_modules/kysely-codegen/dist/db.d.ts libs/db/src/lib/db-schema.types.ts",
+    "db:migrate:latest": "cd libs/db/src/lib && ts-node migration.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -58,6 +62,7 @@
     "@swc/helpers": "^0.5.13",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.16.5",
+    "@types/pg": "^8.11.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "@typescript-eslint/utils": "^7.16.0",
@@ -68,7 +73,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-environment-node": "^29.7.0",
-    "jest-preset-angular": "^14.2.2",
+    "jest-preset-angular": "^14.2.4",
     "kysely-codegen": "^0.16.6",
     "lint-staged": "^15.2.10",
     "nx": "^19.7.2",
