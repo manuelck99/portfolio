@@ -35,3 +35,7 @@ typings
 Thumbs.db
 .nx
 .angular
+
+# .env
+.env.*
+!.env.template
