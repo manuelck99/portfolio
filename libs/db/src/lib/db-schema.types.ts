@@ -10,7 +10,50 @@ export type Generated<T> =
     ? ColumnType<S, I | undefined, U>
     : ColumnType<T, T | undefined, T>;
 
+export type ProjectType = "HOBBY" | "UNIVERSITY" | "WORK";
+
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
+
+export interface Project {
+  description: string;
+  id: Generated<string>;
+  name: string;
+  type: ProjectType;
+  user_id: string | null;
+}
+
+export interface ProjectFeature {
+  description: string;
+  id: Generated<string>;
+  project_id: string | null;
+}
+
+export interface ProjectImage {
+  data: Buffer;
+  description: string;
+  id: Generated<string>;
+  name: string;
+  project_id: string | null;
+  type: string;
+}
+
+export interface ProjectResponsibility {
+  description: string;
+  id: Generated<string>;
+  project_id: string | null;
+}
+
+export interface ProjectTechnology {
+  project_id: string;
+  technology_id: string;
+}
+
+export interface Technology {
+  icon: Buffer;
+  id: Generated<string>;
+  name: string;
+  url: string;
+}
 
 export interface User {
   birth_date: Timestamp;
@@ -25,5 +68,11 @@ export interface User {
 }
 
 export interface DB {
+  project: Project;
+  project_feature: ProjectFeature;
+  project_image: ProjectImage;
+  project_responsibility: ProjectResponsibility;
+  project_technology: ProjectTechnology;
+  technology: Technology;
   user: User;
 }

@@ -3,12 +3,9 @@
 import { Kysely, sql } from "kysely";
 
 export async function up(db: Kysely<any>): Promise<void> {
-  const extensionQuery =
-    sql`create extension if not exists "uuid-ossp"`.compile(db);
-  await db.executeQuery(extensionQuery);
+  await db.executeQuery(sql`create extension if not exists "uuid-ossp"`.compile(db));
 }
 
 export async function down(db: Kysely<any>): Promise<void> {
-  const extensionQuery = sql`drop extension if exists "uuid-ossp"`.compile(db);
-  await db.executeQuery(extensionQuery);
+  await db.executeQuery(sql`drop extension if exists "uuid-ossp"`.compile(db));
 }
