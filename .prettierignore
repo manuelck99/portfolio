@@ -6,3 +6,6 @@ dist
 coverage
 package-lock.json
 .angular
+
+# db library
+libs/db/src/lib/migrations

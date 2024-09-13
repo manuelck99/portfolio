@@ -10,12 +10,20 @@ export type Generated<T> =
     ? ColumnType<S, I | undefined, U>
     : ColumnType<T, T | undefined, T>;
 
-export interface Me {
+export type Timestamp = ColumnType<Date, Date | string, Date | string>;
+
+export interface User {
+  birth_date: Timestamp;
+  city: string;
+  country: string;
   first_name: string;
   id: Generated<string>;
   last_name: string;
+  phone_number: string;
+  street_address: string;
+  zip_code: string;
 }
 
 export interface DB {
-  me: Me;
+  user: User;
 }

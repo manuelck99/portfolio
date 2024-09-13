@@ -23,8 +23,13 @@
     "test:all": "nx run-many -t test --all",
     "db:up": "docker compose -f docker-compose.local.yml up -d",
     "db:down": "docker compose -f docker-compose.local.yml down -v",
+    "db:start": "docker compose -f docker-compose.local.yml start",
+    "db:stop": "docker compose -f docker-compose.local.yml stop",
     "db:codegen": "kysely-codegen --dialect postgres --url postgres://postgres:postgres@localhost:5432/postgres && cp node_modules/kysely-codegen/dist/db.d.ts libs/db/src/lib/db-schema.types.ts",
-    "db:migrate:latest": "cd libs/db/src/lib && ts-node migration.ts",
+    "db:migrate": "cd libs/db/src/lib && ts-node migration.ts",
+    "db:migrate:newest": "cd libs/db/src/lib && ts-node migration.ts newest",
+    "db:migrate:oldest": "cd libs/db/src/lib && ts-node migration.ts oldest",
+    "db:migrate:none": "cd libs/db/src/lib && ts-node migration.ts none",
     "prepare": "husky"
   },
   "lint-staged": {

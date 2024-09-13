@@ -64,9 +64,24 @@ npm run db:up
 # Shuts down the local database
 npm run db:down
 
+# Starts the stopped local database
+npm run db:start
+
+# Stops the started local database
+npm run db:stop
+
 # Generates the database TypeScript types/models
 npm run db:codegen
 
-# Migrates the local database up until the latest migration
-npm run db:migrate:latest
+# Migrates the local database up once
+npm run db:migrate
+
+# Migrates the local database to the newest migration
+npm run db:migrate:newest
+
+# Migrates the local database to the oldest migration
+npm run db:migrate:oldest
+
+# Migrates the local database all the way down (no migrations)
+npm run db:migrate:none
 ```
