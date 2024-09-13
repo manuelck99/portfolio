@@ -4,4 +4,4 @@ export const postgresPoolConfig = {
   database: "postgres",
   user: "postgres",
   password: "postgres",
-};
+}

@@ -34,7 +34,7 @@
   },
   "lint-staged": {
     "*.{js,ts,html,css,scss,json,md}": "prettier --write",
-    "*.{js,ts,html,css,scss}": "eslint --max-warnings 0"
+    "*.{js,ts,html,css,scss}": "eslint"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.4",

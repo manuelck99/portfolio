@@ -1,8 +1,8 @@
-import { defineConfig, devices } from "@playwright/test";
-import { nxE2EPreset } from "@nx/playwright/preset";
-import { workspaceRoot } from "@nx/devkit";
+import { defineConfig, devices } from "@playwright/test"
+import { nxE2EPreset } from "@nx/playwright/preset"
+import { workspaceRoot } from "@nx/devkit"
 
-const baseURL = process.env["BASE_URL"] ?? "http://localhost:4200";
+const baseURL = process.env["BASE_URL"] ?? "http://localhost:4200"
 
 /**
  * Read environment variables from file.
@@ -38,4 +38,4 @@ export default defineConfig({
       use: { ...devices["Desktop Firefox"] },
     },
   ],
-});
+})

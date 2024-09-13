@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Kysely, sql } from "kysely";
+import { Kysely, sql } from "kysely"
 
 export async function up(db: Kysely<any>): Promise<void> {
   await db.schema
-    .createType("project_type").asEnum(["WORK", "UNIVERSITY", "HOBBY"])
-    .execute();
+    .createType("project_type")
+    .asEnum(["WORK", "UNIVERSITY", "HOBBY"])
+    .execute()
 
   await db.schema
     .createTable("project")
@@ -16,7 +17,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("user_id", "uuid")
     .addPrimaryKeyConstraint("pk_project", ["id"])
     .addForeignKeyConstraint("fk_project_user", ["user_id"], "user", ["id"])
-    .execute();
+    .execute()
 
   await db.schema
     .createTable("project_image")
@@ -27,8 +28,13 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("type", "varchar(50)", (col) => col.notNull())
     .addColumn("project_id", "uuid")
     .addPrimaryKeyConstraint("pk_project_image", ["id"])
-    .addForeignKeyConstraint("fk_project_image_project", ["project_id"], "project", ["id"])
-    .execute();
+    .addForeignKeyConstraint(
+      "fk_project_image_project",
+      ["project_id"],
+      "project",
+      ["id"],
+    )
+    .execute()
 
   await db.schema
     .createTable("project_feature")
@@ -36,8 +42,13 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("description", "text", (col) => col.notNull())
     .addColumn("project_id", "uuid")
     .addPrimaryKeyConstraint("pk_project_feature", ["id"])
-    .addForeignKeyConstraint("fk_project_feature_project", ["project_id"], "project", ["id"])
-    .execute();
+    .addForeignKeyConstraint(
+      "fk_project_feature_project",
+      ["project_id"],
+      "project",
+      ["id"],
+    )
+    .execute()
 
   await db.schema
     .createTable("project_responsibility")
@@ -45,26 +56,23 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("description", "text", (col) => col.notNull())
     .addColumn("project_id", "uuid")
     .addPrimaryKeyConstraint("pk_project_responsibility", ["id"])
-    .addForeignKeyConstraint("fk_project_responsibility_project", ["project_id"], "project", ["id"])
-    .execute();
+    .addForeignKeyConstraint(
+      "fk_project_responsibility_project",
+      ["project_id"],
+      "project",
+      ["id"],
+    )
+    .execute()
 }
 
 export async function down(db: Kysely<any>): Promise<void> {
-  await db.schema
-    .dropTable("project_responsibility")
-    .execute();
+  await db.schema.dropTable("project_responsibility").execute()
 
-  await db.schema
-    .dropTable("project_feature")
-    .execute();
+  await db.schema.dropTable("project_feature").execute()
 
-  await db.schema
-    .dropTable("project_image")
-    .execute();
+  await db.schema.dropTable("project_image").execute()
 
-  await db.schema
-    .dropTable("project")
-    .execute();
+  await db.schema.dropTable("project").execute()
 
-  await db.executeQuery(sql`drop type if exists project_type`.compile(db));
+  await db.executeQuery(sql`drop type if exists project_type`.compile(db))
 }
