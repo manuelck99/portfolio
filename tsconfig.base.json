@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pf/db": ["libs/db/src/index.ts"]
+      "@pf/db": ["libs/db/src/index.ts"],
+      "@pf/dto": ["libs/dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
