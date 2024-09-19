@@ -12,6 +12,7 @@
   ],
   "compilerOptions": {
     "strict": true,
+    "strictNullChecks": true,
     "lib": ["es2022"],
     "esModuleInterop": true
   }

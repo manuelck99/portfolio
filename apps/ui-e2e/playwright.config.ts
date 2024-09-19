@@ -23,7 +23,7 @@ export default defineConfig({
   },
   /* Run local dev server before starting the tests */
   webServer: {
-    command: "npx nx run-many -t serve -p api ui",
+    command: "npm run serve",
     url: "http://localhost:4200",
     reuseExistingServer: !process.env["CI"],
     cwd: workspaceRoot,

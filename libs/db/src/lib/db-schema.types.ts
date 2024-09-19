@@ -12,7 +12,7 @@ export type Generated<T> =
 
 export type ProjectType = "HOBBY" | "UNIVERSITY" | "WORK"
 
-export type Timestamp = ColumnType<Date, Date | string, Date | string>
+export type Timestamp = ColumnType<Date, Date | string>
 
 export interface Project {
   description: string

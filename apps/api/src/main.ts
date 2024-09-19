@@ -16,7 +16,9 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3000
   await app.listen(port)
 
-  Logger.log(`Application is running on: http://${host}:${port}/${prefix}`)
+  globalThis.API_BASE_URL = `https://${host}:${port}/${prefix}`
+
+  Logger.log(`Application is running on: ${globalThis.API_BASE_URL}`)
 }
 
 bootstrap().catch((error) => {

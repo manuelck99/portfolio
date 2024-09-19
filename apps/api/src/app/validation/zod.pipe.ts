@@ -10,11 +10,12 @@ import { ZodSchema } from "zod"
 export class ZodPipe<T> implements PipeTransform<unknown, T> {
   constructor(private readonly schema: ZodSchema<T>) {}
 
-  transform(value: unknown, metadata: ArgumentMetadata): T {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  transform(value: unknown, _metadata: ArgumentMetadata): T {
     const result = this.schema.safeParse(value)
 
     if (!result.success) {
-      throw new BadRequestException(`Validation of ${metadata.data} failed`, {
+      throw new BadRequestException(`Validation failed`, {
         cause: result.error,
       })
     }
