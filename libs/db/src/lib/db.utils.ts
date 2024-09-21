@@ -7,6 +7,7 @@ import {
   Migrator,
   NO_MIGRATIONS,
   PostgresDialect,
+  sql,
 } from "kysely"
 import * as fs from "node:fs/promises"
 import * as path from "node:path"
@@ -72,6 +73,20 @@ export function createKyselyDb(
 
 export async function destroyKyselyDb(db: Kysely<DB>): Promise<void> {
   await db.destroy()
+}
+
+export async function clearKyselyDb(db: Kysely<DB>): Promise<void> {
+  await db.executeQuery(
+    sql`
+      truncate "user",
+        project,
+        project_image,
+        project_feature,
+        project_responsibility,
+        technology,
+        project_technology cascade
+    `.compile(db),
+  )
 }
 
 export type MigrationDepth = "newest" | "oldest" | "none" | string

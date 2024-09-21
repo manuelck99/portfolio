@@ -18,19 +18,21 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("technology_id", "uuid")
     .addPrimaryKeyConstraint("pk_project_technology", [
       "project_id",
-      "technology_id",
+      "technology_id"
     ])
     .addForeignKeyConstraint(
       "fk_project_technology_project",
       ["project_id"],
       "project",
       ["id"],
+      (cb) => cb.onDelete("cascade")
     )
     .addForeignKeyConstraint(
       "fk_project_technology_technology",
       ["technology_id"],
       "technology",
       ["id"],
+      (cb) => cb.onDelete("cascade")
     )
     .execute()
 }

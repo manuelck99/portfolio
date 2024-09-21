@@ -16,7 +16,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("type", sql`project_type`, (col) => col.notNull())
     .addColumn("user_id", "uuid")
     .addPrimaryKeyConstraint("pk_project", ["id"])
-    .addForeignKeyConstraint("fk_project_user", ["user_id"], "user", ["id"])
+    .addForeignKeyConstraint("fk_project_user", ["user_id"], "user", ["id"], (cb) => cb.onDelete("cascade"))
     .execute()
 
   await db.schema
@@ -33,6 +33,7 @@ export async function up(db: Kysely<any>): Promise<void> {
       ["project_id"],
       "project",
       ["id"],
+      (cb) => cb.onDelete("cascade")
     )
     .execute()
 
@@ -47,6 +48,7 @@ export async function up(db: Kysely<any>): Promise<void> {
       ["project_id"],
       "project",
       ["id"],
+      (cb) => cb.onDelete("cascade")
     )
     .execute()
 
@@ -61,6 +63,7 @@ export async function up(db: Kysely<any>): Promise<void> {
       ["project_id"],
       "project",
       ["id"],
+      (cb) => cb.onDelete("cascade")
     )
     .execute()
 }

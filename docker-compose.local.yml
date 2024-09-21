@@ -1,3 +1,5 @@
+name: portfolio-local
+
 services:
   postgres-local:
     container_name: postgres-local

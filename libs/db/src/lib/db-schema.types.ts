@@ -59,6 +59,7 @@ export interface User {
   birth_date: Timestamp
   city: string
   country: string
+  email: string
   first_name: string
   id: Generated<string>
   last_name: string
