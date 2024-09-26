@@ -5,7 +5,9 @@ import { CatchAllExceptionFilter } from "./app/exception/catch-all-exception.fil
 import * as process from "node:process"
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, {
+    logger: ["fatal", "error", "warn", "log", "debug", "verbose"],
+  })
 
   const prefix = "api"
   app.setGlobalPrefix(prefix)

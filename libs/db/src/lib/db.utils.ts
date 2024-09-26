@@ -21,8 +21,8 @@ import { DB } from "./db-schema.types"
 
 export const postgresPoolConfig: PoolConfig = {
   host: process.env.DB_HOST ?? "localhost",
-  port: Number(process.env.DB_PORT) ?? 5432,
-  database: process.env.DB_NAME ?? "postgres",
+  port: Number(process.env.DB_PORT ?? 5432),
+  database: process.env.DB_DATABASE ?? "postgres",
   user: process.env.DB_USER ?? "postgres",
   password: process.env.DB_PASSWORD ?? "postgres",
 }

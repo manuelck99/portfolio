@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common"
-import { DB_CONNECTION } from "../db/db.provider"
+import { DB_CONNECTION } from "../db/db-connection.provider"
 import { DeleteResult, Kysely } from "kysely"
 import { DB, InsertUser, SelectUser } from "@pf/db"
 

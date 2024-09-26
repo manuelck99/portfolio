@@ -18,7 +18,7 @@ import {
 import { Test } from "@nestjs/testing"
 import request from "supertest"
 import { AppModule } from "../app.module"
-import { DB_CONNECTION } from "../db/db.provider"
+import { DB_CONNECTION } from "../db/db-connection.provider"
 import { CatchAllExceptionFilter } from "../exception/catch-all-exception.filter"
 import { CreateUserDto, UserDto } from "@pf/dto"
 import { DateTime } from "luxon"
@@ -37,7 +37,7 @@ const testUser = {
   country: "Russia",
 }
 
-describe("User", () => {
+describe("[DB] User", () => {
   let container: StartedPostgreSqlContainer
   let db: Kysely<DB>
   let app: INestApplication
@@ -330,6 +330,58 @@ describe("User", () => {
     expect(response.body).toHaveProperty("cause.name", "ZodError")
     expect(response.body).toHaveProperty("cause.issues[0].code", "too_big")
     expect(response.body).toHaveProperty("cause.issues[0].path[0]", "lastName")
+  })
+  test("POST /user with missing email should be unsuccessful", async () => {
+    const response = await request(app.getHttpServer())
+      .post(`/${prefix}/user`)
+      .send({
+        firstName: testUser.first_name,
+        lastName: testUser.last_name,
+        birthDate: testUser.birth_date,
+        phoneNumber: testUser.phone_number,
+        streetAddress: testUser.street_address,
+        zipCode: testUser.zip_code,
+        city: testUser.city,
+        country: testUser.country,
+      } as Partial<CreateUserDto>)
+    expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
+    expect(response.badRequest).toStrictEqual(true)
+    expect(response.error).toBeDefined()
+    expect(response.error).not.toBeNull()
+    expect(response.body).toHaveProperty("name", BadRequestException.name)
+    expect(response.body).toHaveProperty("statusCode", HttpStatus.BAD_REQUEST)
+    expect(response.body).toHaveProperty("message", "Validation failed")
+    expect(response.body).toHaveProperty("cause.name", "ZodError")
+    expect(response.body).toHaveProperty("cause.issues[0].code", "invalid_type")
+    expect(response.body).toHaveProperty("cause.issues[0].path[0]", "email")
+  })
+  test("POST /user with invalid email should be unsuccessful", async () => {
+    const response = await request(app.getHttpServer())
+      .post(`/${prefix}/user`)
+      .send({
+        firstName: testUser.first_name,
+        lastName: testUser.last_name,
+        email: "test.com",
+        birthDate: testUser.birth_date,
+        phoneNumber: testUser.phone_number,
+        streetAddress: testUser.street_address,
+        zipCode: testUser.zip_code,
+        city: testUser.city,
+        country: testUser.country,
+      } as Partial<CreateUserDto>)
+    expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
+    expect(response.badRequest).toStrictEqual(true)
+    expect(response.error).toBeDefined()
+    expect(response.error).not.toBeNull()
+    expect(response.body).toHaveProperty("name", BadRequestException.name)
+    expect(response.body).toHaveProperty("statusCode", HttpStatus.BAD_REQUEST)
+    expect(response.body).toHaveProperty("message", "Validation failed")
+    expect(response.body).toHaveProperty("cause.name", "ZodError")
+    expect(response.body).toHaveProperty(
+      "cause.issues[0].code",
+      "invalid_string",
+    )
+    expect(response.body).toHaveProperty("cause.issues[0].path[0]", "email")
   })
   test("DELETE /user/:ID with existing ID should be successful", async () => {
     const selectUser = await db
