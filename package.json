@@ -19,7 +19,7 @@
     "test": "nx run-many -t test -p api ui",
     "test:ui": "nx run ui:test",
     "test:api": "nx run api:test",
-    "test:ui-e2e": "nx run ui-e2e:e2e && npm run db:down",
+    "test:e2e": "nx run e2e:e2e && npm run db:down",
     "test:all": "nx run-many -t test --all",
     "db:up": "docker compose -f docker-compose.local.yml up -d",
     "db:down": "docker compose -f docker-compose.local.yml down -v",

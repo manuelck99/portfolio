@@ -52,8 +52,8 @@ npm run test:ui
 # Tests the api app
 npm run test:api
 
-# E2E-Tests the ui app while the api app is being served
-npm run test:ui-e2e
+# E2E-Tests the app
+npm run test:e2e
 
 # Tests all targets (excluding E2E tests)
 npm run test:all
