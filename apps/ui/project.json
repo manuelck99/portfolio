@@ -72,7 +72,14 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "dependsOn": ["stylelint"]
+    },
+    "stylelint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["stylelint \"**/*.{css,scss}\""]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",

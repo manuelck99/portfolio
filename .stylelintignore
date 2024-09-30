@@ -1,0 +1,7 @@
+# Add files here to ignore them from stylelint linting
+.angular
+.idea
+.nx
+dist
+node_modules
+package-lock.json
