@@ -39,3 +39,6 @@ Thumbs.db
 # .env
 .env.*
 !.env.template
+
+# Access token
+access_token
