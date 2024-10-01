@@ -22,7 +22,10 @@
             "input": "apps/ui/public"
           }
         ],
-        "styles": ["apps/ui/src/styles.scss"],
+        "styles": [
+          "@angular/material/prebuilt-themes/cyan-orange.css",
+          "apps/ui/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
