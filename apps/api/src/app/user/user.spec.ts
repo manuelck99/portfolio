@@ -35,6 +35,7 @@ const testUser = {
   zip_code: "165155",
   city: "Vel’sk",
   country: "Russia",
+  default: true,
 }
 
 describe("[DB] User", () => {
@@ -81,6 +82,7 @@ describe("[DB] User", () => {
         "zip_code",
         "city",
         "country",
+        "default",
       ])
       .executeTakeFirstOrThrow()
 
@@ -105,6 +107,7 @@ describe("[DB] User", () => {
       zipCode: selectUser.zip_code,
       city: selectUser.city,
       country: selectUser.country,
+      default: selectUser.default,
     })
   })
   test("GET /user/:ID with non-existing ID should be unsuccessful", async () => {
@@ -136,6 +139,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as CreateUserDto)
     expect(response.status).toStrictEqual(HttpStatus.CREATED)
     expect(response.error).toStrictEqual(false)
@@ -156,6 +160,7 @@ describe("[DB] User", () => {
         "zip_code",
         "city",
         "country",
+        "default",
       ])
       .where("user.id", "=", userDto.id)
       .executeTakeFirstOrThrow()
@@ -169,6 +174,7 @@ describe("[DB] User", () => {
     expect(userDto.zipCode).toStrictEqual(testUser.zip_code)
     expect(userDto.city).toStrictEqual(testUser.city)
     expect(userDto.country).toStrictEqual(testUser.country)
+    expect(userDto.default).toStrictEqual(testUser.default)
 
     expect(userDto.id).toStrictEqual(selectUser.id)
     expect(userDto.firstName).toStrictEqual(selectUser.first_name)
@@ -182,6 +188,7 @@ describe("[DB] User", () => {
     expect(userDto.zipCode).toStrictEqual(selectUser.zip_code)
     expect(userDto.city).toStrictEqual(selectUser.city)
     expect(userDto.country).toStrictEqual(selectUser.country)
+    expect(userDto.default).toStrictEqual(selectUser.default)
   })
   test("POST /user with missing first name should be unsuccessful", async () => {
     const response = await request(app.getHttpServer())
@@ -195,6 +202,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -220,6 +228,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -245,6 +254,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -269,6 +279,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -294,6 +305,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -319,6 +331,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -343,6 +356,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -368,6 +382,7 @@ describe("[DB] User", () => {
         zipCode: testUser.zip_code,
         city: testUser.city,
         country: testUser.country,
+        default: testUser.default,
       } as Partial<CreateUserDto>)
     expect(response.status).toStrictEqual(HttpStatus.BAD_REQUEST)
     expect(response.badRequest).toStrictEqual(true)
@@ -398,6 +413,7 @@ describe("[DB] User", () => {
         "zip_code",
         "city",
         "country",
+        "default",
       ])
       .executeTakeFirstOrThrow()
 

@@ -15,6 +15,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("country", "varchar(50)", (col) => col.notNull())
     .addColumn("street_address", "varchar(50)", (col) => col.notNull())
     .addColumn("zip_code", "varchar(50)", (col) => col.notNull())
+    .addColumn("default", "boolean", (col) => col.notNull().defaultTo(false))
     .addPrimaryKeyConstraint("pk_user", ["id"])
     .execute()
 }

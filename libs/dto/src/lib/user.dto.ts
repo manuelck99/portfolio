@@ -9,4 +9,5 @@ export interface UserDto {
   zipCode: string
   city: string
   country: string
+  default: boolean
 }

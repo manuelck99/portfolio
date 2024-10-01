@@ -10,6 +10,7 @@ export interface CreateUserDto {
   zipCode: string
   city: string
   country: string
+  default: boolean
 }
 
 export const createUserDtoSchema = z.object({
@@ -22,4 +23,5 @@ export const createUserDtoSchema = z.object({
   zipCode: z.string().min(1).max(50).trim(),
   city: z.string().min(1).max(50).trim(),
   country: z.string().min(1).max(50).trim(),
+  default: z.boolean(),
 })

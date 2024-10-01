@@ -21,6 +21,7 @@ export class UserMapper {
       zipCode: selectUser.zip_code,
       city: selectUser.city,
       country: selectUser.country,
+      default: selectUser.default,
     }
   }
 
@@ -35,6 +36,7 @@ export class UserMapper {
       zip_code: createUserDto.zipCode,
       city: createUserDto.city,
       country: createUserDto.country,
+      default: createUserDto.default,
     }
   }
 }

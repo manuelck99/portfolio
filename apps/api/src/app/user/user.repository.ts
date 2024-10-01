@@ -22,6 +22,7 @@ export class UserRepository {
         "zip_code",
         "city",
         "country",
+        "default",
       ])
       .executeTakeFirst()
   }
@@ -41,6 +42,7 @@ export class UserRepository {
         "zip_code",
         "city",
         "country",
+        "default",
       ])
       .executeTakeFirst()
   }
