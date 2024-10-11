@@ -27,7 +27,7 @@ export const postgresPoolConfig: PoolConfig = {
   password: process.env.DB_PASSWORD ?? "postgres",
 }
 
-const POSTGRES_IMAGE = "postgres:16.4-alpine3.20"
+const POSTGRES_IMAGE = "postgres:17.0-alpine3.20"
 
 export async function startPostgresContainer(): Promise<StartedPostgreSqlContainer> {
   return new PostgreSqlContainer(POSTGRES_IMAGE).start()
@@ -110,6 +110,7 @@ export async function migrate(
       path,
       migrationFolder: path.join(__dirname, "migrations"),
     }),
+    allowUnorderedMigrations: true,
   })
 
   const migrations = await migrator.getMigrations()
@@ -123,8 +124,8 @@ export async function migrate(
     migrationResults = await migrator.migrateTo(NO_MIGRATIONS)
   } else {
     const migrationSteps = getMigrationsSteps(migrationDepth)
-    if (migrationSteps === Infinity) {
-      throw new Error(`${migrationDepth} not an argument`)
+    if (Number.isNaN(migrationSteps)) {
+      throw new Error(`${migrationDepth} is not an argument`)
     }
 
     let index = findIndexOfLastExecutedMigration(migrations)
@@ -162,10 +163,8 @@ export async function migrate(
 function getMigrationsSteps(migrationDepth?: MigrationDepth): number {
   if (migrationDepth === undefined) {
     return 1
-  } else if (!Number.isNaN(migrationDepth)) {
-    return Math.trunc(Number(migrationDepth))
   } else {
-    return Infinity
+    return Math.trunc(Number(migrationDepth))
   }
 }
 
