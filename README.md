@@ -7,8 +7,11 @@ This repository contains the code for developing and deploying my portfolio.
 ## Scripts
 
 ```bash
-# Formats the codebase
+# Formats a provided file
 npm run format
+
+# Formats the codebase
+npm run format:all
 
 # Lints the main apps
 npm run lint

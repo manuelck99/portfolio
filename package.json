@@ -4,7 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "format": "prettier --write .",
+    "format": "prettier --write",
+    "format:all": "prettier --write .",
     "lint": "nx run-many -t lint -p api ui --max-warnings 0",
     "lint:fix": "nx run-many -t lint -p api ui --fix --max-warnings 0",
     "lint:all": "nx run-many -t lint --all --max-warnings 0",
@@ -25,7 +26,7 @@
     "db:down": "docker compose -f docker-compose.local.yml down -v",
     "db:start": "docker compose -f docker-compose.local.yml start",
     "db:stop": "docker compose -f docker-compose.local.yml stop",
-    "db:codegen": "npm run db:up && npm run db:migrate:newest && kysely-codegen --dialect postgres --url postgres://postgres:postgres@localhost:5432/postgres && cp node_modules/kysely-codegen/dist/db.d.ts libs/db/src/lib/db-schema.types.ts && npm run db:down",
+    "db:codegen": "npm run db:up && npm run db:migrate:newest && kysely-codegen --dialect postgres --url postgres://postgres:postgres@localhost:5432/postgres && cp node_modules/kysely-codegen/dist/db.d.ts libs/db/src/lib/db-schema.types.ts && npm run db:down && npm run format libs/db/src/lib/db-schema.types.ts",
     "db:migrate": "cd libs/db/src/lib && ts-node migration.ts",
     "db:migrate:newest": "cd libs/db/src/lib && ts-node migration.ts newest",
     "db:migrate:oldest": "cd libs/db/src/lib && ts-node migration.ts oldest",

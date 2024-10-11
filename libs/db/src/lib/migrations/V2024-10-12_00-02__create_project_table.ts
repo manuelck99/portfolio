@@ -77,5 +77,5 @@ export async function down(db: Kysely<any>): Promise<void> {
 
   await db.schema.dropTable("project").execute()
 
-  await db.executeQuery(sql`drop type if exists project_type`.compile(db))
+  await db.schema.dropType("project_type").ifExists().execute()
 }
