@@ -75,7 +75,6 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
       "dependsOn": ["stylelint"]
     },
     "stylelint": {
